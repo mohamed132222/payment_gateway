@@ -12,7 +12,6 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
   final List<String> paymentMethods = [
     "assets/images/card1.svg",
     "assets/images/card2.svg",
-    "assets/images/card3.svg",
   ];
 
   int activeIndex = 0;

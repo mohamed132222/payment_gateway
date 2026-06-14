@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:payment/core/utils/stripe_services.dart';
 import 'package:payment/core/widgets/custom_button.dart';
+import 'package:payment/feature/cubit/payment_cubit.dart';
+import 'package:payment/feature/data/repos/payment_repo_impl.dart';
 import 'package:payment/feature/presentation/views/widgets/order_item.dart';
 import 'package:payment/feature/presentation/views/widgets/payment_method_bottom_sheet.dart';
 import 'package:payment/feature/presentation/views/widgets/total_price.dart';
@@ -32,7 +36,14 @@ class MyCartViewBody extends StatelessWidget {
               // );
               showModalBottomSheet(
                 context: context,
-                builder: (context) => PaymentMethodBottomSheet(),
+                builder: (context) => BlocProvider(
+                  create: (context) => PaymentCubit(
+                    paymentRepo: PaymentRepoImpl(
+                      stripeServices: StripeServices(),
+                    ),
+                  ),
+                  child: PaymentMethodBottomSheet(),
+                ),
               );
             },
           ),

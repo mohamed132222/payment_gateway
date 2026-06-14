@@ -19,8 +19,10 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: SizedBox(height: 20)),
-        SliverToBoxAdapter(child: Center(child: PaymentMethodsListView())),
+        const SliverToBoxAdapter(child: SizedBox(height: 20)),
+        const SliverToBoxAdapter(
+          child: Center(child: PaymentMethodsListView()),
+        ),
         const SliverToBoxAdapter(child: SizedBox(height: 34)),
         SliverToBoxAdapter(
           child: CustomCredit(
@@ -34,8 +36,8 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(
-                top: 8,
-                bottom: 8.0,
+                top: 16,
+                bottom: 16.0,
                 left: 20,
                 right: 20,
               ),
@@ -43,13 +45,15 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
                 text: "Pay",
                 onPressed: () {
                   if (formKey.currentState?.validate() ?? false) {
-                    // Process payment
                     formKey.currentState?.save();
-                  } else {
+                    // If you want to proceed to ThankView after payment logic:
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ThankView()),
+                      MaterialPageRoute(
+                        builder: (context) => const ThankView(),
+                      ),
                     );
+                  } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
                     });
@@ -59,7 +63,6 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             ),
           ),
         ),
-        SliverToBoxAdapter(child: SizedBox(height: 20)),
       ],
     );
   }

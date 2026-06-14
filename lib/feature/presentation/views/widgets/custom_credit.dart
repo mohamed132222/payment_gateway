@@ -32,6 +32,7 @@ class _CustomCreditState extends State<CustomCredit> {
           cardHolderName: cardHolderName,
           cvvCode: cvvCode,
           showBackView: showBackView,
+          isHolderNameVisible: true,
           onCreditCardWidgetChange: (value) {},
         ),
         CreditCardForm(
@@ -47,7 +48,6 @@ class _CustomCreditState extends State<CustomCredit> {
               expiryDate = creditCardModel.expiryDate;
               cardHolderName = creditCardModel.cardHolderName;
               cvvCode = creditCardModel.cvvCode;
-
               showBackView = creditCardModel.isCvvFocused;
             });
           },
