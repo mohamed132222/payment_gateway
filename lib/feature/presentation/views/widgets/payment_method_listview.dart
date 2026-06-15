@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:payment/feature/presentation/views/widgets/payment_item.dart';
 
 class PaymentMethodsListView extends StatefulWidget {
-  const PaymentMethodsListView({super.key});
+  const PaymentMethodsListView({super.key, required this.onTap});
+
+  final Function(int index) onTap;
 
   @override
   State<PaymentMethodsListView> createState() => _PaymentMethodsListViewState();
@@ -12,6 +14,7 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
   final List<String> paymentMethods = [
     "assets/images/card1.svg",
     "assets/images/card2.svg",
+    "assets/images/paymob.svg",
   ];
 
   int activeIndex = 0;
@@ -23,6 +26,7 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
+        itemCount: paymentMethods.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: PaymentItem(
@@ -32,10 +36,10 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
               setState(() {
                 activeIndex = index;
               });
+              widget.onTap(activeIndex);
             },
           ),
         ),
-        itemCount: paymentMethods.length,
       ),
     );
   }

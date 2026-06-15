@@ -5,10 +5,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:payment/core/utils/api_keys.dart';
 import 'package:payment/core/utils/strip_api_services.dart';
-import 'package:payment/feature/data/models/ephemeral_model/Ephemeral_keys_model.dart';
-import 'package:payment/feature/data/models/init_payment_sheet_request/init_payment_sheet_request.dart';
-import 'package:payment/feature/data/models/payment_intent_request/payment_intent_request.dart';
-import 'package:payment/feature/data/models/payment_intent_response/PaymentIntentModel.dart';
+import 'package:payment/feature/data/models/stripe/ephemeral_model/Ephemeral_keys_model.dart';
+import 'package:payment/feature/data/models/stripe/init_payment_sheet_request/init_payment_sheet_request.dart';
+import 'package:payment/feature/data/models/stripe/payment_intent_request/payment_intent_request.dart';
+import 'package:payment/feature/data/models/stripe/payment_intent_response/PaymentIntentModel.dart';
 
 class StripeServices {
   StripApiServices stripApiServices = StripApiServices();

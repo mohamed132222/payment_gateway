@@ -11,3 +11,5 @@ final class PaymentFailure extends PaymentState {
 
   PaymentFailure({required this.message});
 }
+
+final class PaypalPaymentInitiated extends PaymentState {}

@@ -1,7 +1,13 @@
 import 'package:dio/dio.dart';
 
 class StripApiServices {
-  final Dio dio = Dio();
+  final Dio dio = Dio(
+    BaseOptions(
+      connectTimeout: Duration(seconds: 15),
+      receiveTimeout: Duration(seconds: 15),
+      sendTimeout: Duration(seconds: 15),
+    ),
+  );
 
   Future<Response> post({
     required String url,

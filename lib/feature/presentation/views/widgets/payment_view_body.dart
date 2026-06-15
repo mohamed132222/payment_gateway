@@ -19,9 +19,17 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(child: SizedBox(height: 20)),
-        const SliverToBoxAdapter(
-          child: Center(child: PaymentMethodsListView()),
+        SliverToBoxAdapter(child: SizedBox(height: 20)),
+        SliverToBoxAdapter(
+          child: Center(
+            child: PaymentMethodsListView(
+              onTap: (index) {
+                setState(() {
+                  autovalidateMode = AutovalidateMode.disabled;
+                });
+              },
+            ),
+          ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 34)),
         SliverToBoxAdapter(
@@ -36,8 +44,8 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(
-                top: 16,
-                bottom: 16.0,
+                top: 8,
+                bottom: 8.0,
                 left: 20,
                 right: 20,
               ),
@@ -45,15 +53,19 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
                 text: "Pay",
                 onPressed: () {
                   if (formKey.currentState?.validate() ?? false) {
+                    // Process payment
                     formKey.currentState?.save();
-                    // If you want to proceed to ThankView after payment logic:
+                  } else {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ThankView(),
+                        builder: (context) => ThankView(
+                          clientName: '',
+                          total: 2000,
+                          transactionTime: DateTime.now(),
+                        ),
                       ),
                     );
-                  } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
                     });
@@ -63,6 +75,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             ),
           ),
         ),
+        SliverToBoxAdapter(child: SizedBox(height: 20)),
       ],
     );
   }
